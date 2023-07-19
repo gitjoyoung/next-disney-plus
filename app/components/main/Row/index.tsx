@@ -47,30 +47,31 @@ const Row = ({ RowData, Sub }: { RowData: RowDataPros[]; Sub: string }) => {
             ref={scrollRef}
             className=" flex h-full w-full  gap-4 overflow-scroll duration-700 ease-in-out  scrollbar-hide "
           >
-            {RowData.map((_: RowDataPros, index: number) => (
-              <div
-                key={index}
-                className="flex flex-col  rounded-lg border-[3px]    border-solid  border-gray-600   hover:border-white"
-              >
+            {RowData &&
+              RowData.map((_: RowDataPros, index: number) => (
                 <div
-                  onClick={() => HandleModal(index)}
-                  style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${RowData[index].backdrop_path})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                  }}
-                  className="relative h-full w-[20rem]  rounded-md"
+                  key={index}
+                  className="flex flex-col  rounded-lg border-[3px]    border-solid  border-gray-600   hover:border-white"
                 >
                   <div
-                    className="absolute bottom-0  w-[20rem] overflow-hidden overflow-ellipsis whitespace-nowrap bg-black bg-opacity-80
-                 p-2 text-lg font-bold"
+                    onClick={() => HandleModal(index)}
+                    style={{
+                      backgroundImage: `url(https://image.tmdb.org/t/p/original/${RowData[index].backdrop_path})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                    }}
+                    className="relative h-full w-[20rem]  rounded-md"
                   >
-                    {RowData[index].title ? RowData[index].title : RowData[index].name}
+                    <div
+                      className="absolute bottom-0  w-[20rem] overflow-hidden overflow-ellipsis whitespace-nowrap bg-black bg-opacity-80
+                 p-2 text-lg font-bold"
+                    >
+                      {RowData[index].title ? RowData[index].title : RowData[index].name}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
             <button
               className="absolute left-5 top-[60%] hidden  
                h-[3rem] w-[3.3rem] translate-y-[-50%] cursor-pointer rounded-full
